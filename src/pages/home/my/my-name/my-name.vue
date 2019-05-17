@@ -97,7 +97,7 @@ import {XTextarea, XHeader,Group, XInput,Box,XButton}from 'vux'
             checkStatus(){
                 const {userId, session_id} = this.users;
             //    console.log(this.users)
-                this.$axios.post('/api/Usercenter/see_realname_apply',`data=${JSON.stringify({userId, session_id})}`)
+                this.$axios.post('/api/Usercenter/getApproveInfo',`data=${JSON.stringify({userId, session_id})}`)
                     .then(res=>{
                         // console.log(res)
                         if(res.code==200){
