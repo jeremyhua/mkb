@@ -4,9 +4,9 @@
              <div class="fixed-content">
                 <group>
                     <x-input placeholder="请输入你的真实姓名" :disabled="rz_disabled" v-model="realname" :max="5"></x-input>
-                    <x-input placeholder="请输入你的身份证号码" v-model="card" :disabled="rz_disabled" :max='18' :min='18'></x-input>
+                    <x-input placeholder="请输入你的身份证号码" v-model="cardid" :disabled="rz_disabled" :max='18' :min='18'></x-input>
                 </group>
-                <div class="camera-box"  @click="changeimg('zm_upload')"  id="zm_upload" :style="{background: '#ffb988 url('+ require('@/assets/images/id1.png') +') center center no-repeat',backgroundSize: '177px 97.5px'}" >
+                <!-- <div class="camera-box"  @click="changeimg('zm_upload')"  id="zm_upload" :style="{background: '#ffb988 url('+ require('@/assets/images/id1.png') +') center center no-repeat',backgroundSize: '177px 97.5px'}" >
                     <img v-if="zm_path" :src="imgUrl+zm_path" class="img-zm">
                     <img :src="require('@/assets/images/pay/camera.png')" class="psa" >
                     <div class="psa">上传身份证正面</div>
@@ -15,7 +15,7 @@
                     <img v-if="fm_path" :src="imgUrl+fm_path" class="img-zm">
                     <img class="psa" :src="require('@/assets/images/pay/camera.png')">
                     <div class="psa">上传身份证反面</div>
-                </div>     
+                </div> -->    
         <box gap="10px 10px">
           <XButton  :disabled='rz_disabled' class="renzen" :gradients="['#6fc6f1', '#469dc8']"  @click.native="post_data">{{rz_status}}</XButton>
         </box>
@@ -35,9 +35,7 @@ import {XTextarea, XHeader,Group, XInput,Box,XButton}from 'vux'
                 myphoto:{src:require('@/assets/images/my_photo_2.png')},
                 myphotos:{src:require('@/assets/images/my_photo.png')},
                 users:localStorage.getItem('users') && JSON.parse(localStorage.getItem('users')) || {},
-                card:'',
-                zm_path:'',
-                fm_path:'',
+                cardid:'',
                 realname:'',
                 onoff:'',
                 bg:{background:"#fff","z-index":10,width:"100%"},
@@ -52,27 +50,25 @@ import {XTextarea, XHeader,Group, XInput,Box,XButton}from 'vux'
             this.checkStatus();  //查看状态
         },
         methods:{
-            changeimg(even){
-				$('#'+even+' .upload-addimg-btn').find("input[type=file]").click();
-			},
-            changePic(){},
+//             changeimg(even){
+// 				$('#'+even+' .upload-addimg-btn').find("input[type=file]").click();
+// 			},
+//             changePic(){},
             post_data(){
                 if(this.realname==''){
                     Toast('名字不能为空');
                     return false;
-                }else if(this.card==''){
+                }else if(this.cardid==''){
                     Toast('身份证不能为空');
                     return false;
                 }else if(!/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test( this.card)){
                     Toast('请输入正确的身份证号码')
                     return  false;
                 }
-                this.$axios.post('/api/Usercenter/do_real_name',`data=${JSON.stringify({   session_id:this.users.session_id,
+                this.$axios.post('/api/Usercenter/identify',`data=${JSON.stringify({session_id:this.users.session_id,
                         userId:this.users.userId, 
-                        card:this.card,
-                        realname:this.realname,
-                        card_img_a:this.zm_path,
-                        card_img_b:this.fm_path})}`)
+                        cardid:this.cardid,
+                        realname:this.realname})}`)
                     .then(res=>{
                         if(res.code==200){
                             this.checkStatus()
@@ -92,9 +88,9 @@ import {XTextarea, XHeader,Group, XInput,Box,XButton}from 'vux'
             },
             blurcard(){
                  var cardreg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/; 
-                 if(!this.card){
+                 if(!this.cardid){
                    Toast('身份证不能为空')
-                }else if(!cardreg.test( this.card)){
+                }else if(!cardreg.test( this.cardid)){
                     Toast('请输入正确的身份证号码')
                 }
             },
@@ -108,25 +104,19 @@ import {XTextarea, XHeader,Group, XInput,Box,XButton}from 'vux'
                                 if(res.data.status==1){  //已实名
                                     this.rz_status = '已认证',
                                     this.rz_disabled = true,
-                                    this.zm_path = res.data.card_img_a;
-                                    this.fm_path = res.data.card_img_b;
                                     this.realname = res.data.realname;
-                                    this.card = res.data.card;
+                                    this.cardid = res.data.card;
                                 }else if(res.data.status==0){ //审核中
                                     this.rz_status = '审核中',
                                     this.rz_disabled = true,
-                                    this.zm_path = res.data.card_img_a;
-                                    this.fm_path = res.data.card_img_b;
                                     this.realname = res.data.realname;
                                     this.card = res.data.card;
                                 }else if(res.data.status==-1){ //被拒绝
                                     Toast(res.msg);
                                     this.rz_status = '重新提交',
                                     this.rz_disabled = false,
-                                    this.zm_path = res.data.card_img_a;
-                                    this.fm_path = res.data.card_img_b;
                                     this.realname = res.data.realname;
-                                    this.card = res.data.card;
+                                    this.cardid = res.data.card;
                                 }
                                 else{
                                     this.rz_disabled = false;
@@ -135,61 +125,59 @@ import {XTextarea, XHeader,Group, XInput,Box,XButton}from 'vux'
                         }else{
                                     this.rz_status = '认证',
                                     this.rz_disabled = false,
-                                    this.zm_path = res.data.card_img_a;
-                                    this.fm_path = res.data.card_img_b;
                                     this.realname = res.data.realname;
-                                    this.card = res.data.card;
+                                    this.cardid = res.data.card;
                         };
                     })
             }
         },
         watch: {
-            'rz_disabled'(val){
-                // console.log(this.rz_disabled,val)
-                if(!val){
-                    const _this = this;
-                    Uploader("zm_upload",{
-                        path:this.imgUrl+"/api/Upload/upload",//请求的地址
-                        data:{//往后台传递的参数
-                                type:'card'
-                        },
-                        uploadSuccess:function(results){//上传成功的回调
-                            if(results.code==200){
-                                _this.zm_path = results.data.url[0];
-                                // console.log(_this.zm_path)
-                                mui.hideLoading();//隐藏后的回调函数
-						        mui.toast('上传成功');
-                            }else{
-                                mui.toast(results.msg)
-                            }
-                        },
-                        uploadError:function(xhr,status){
-                            // console.log(status)
-                            //上传出错的回调
-                        }
-                    });
-                    Uploader("fm_upload",{
-                        path:this.imgUrl+"/api/Upload/upload",//请求的地址
-                        data:{//往后台传递的参数
-                            type:'card'
-                        },
-                        uploadSuccess:function(results){//上传成功的回调
-                        // console.log(results);
-                            if(results.code==200){
-                                _this.fm_path = results.data.url[0];
-                                mui.hideLoading();//隐藏后的回调函数
-						        mui.toast('上传成功');
-                            }else{
-                                mui.toast(results.msg)
-                            }
-                        },
-                        uploadError:function(xhr,status){
-                            // console.log(status)
-                            //上传出错的回调
-                        }
-                    });
-                }
-            },
+//             'rz_disabled'(val){
+//                 // console.log(this.rz_disabled,val)
+//                 if(!val){
+//                     const _this = this;
+//                     Uploader("zm_upload",{
+//                         path:this.imgUrl+"/api/Upload/upload",//请求的地址
+//                         data:{//往后台传递的参数
+//                                 type:'card'
+//                         },
+//                         uploadSuccess:function(results){//上传成功的回调
+//                             if(results.code==200){
+//                                 _this.zm_path = results.data.url[0];
+//                                 // console.log(_this.zm_path)
+//                                 mui.hideLoading();//隐藏后的回调函数
+// 						        mui.toast('上传成功');
+//                             }else{
+//                                 mui.toast(results.msg)
+//                             }
+//                         },
+//                         uploadError:function(xhr,status){
+//                             // console.log(status)
+//                             //上传出错的回调
+//                         }
+//                     });
+//                     Uploader("fm_upload",{
+//                         path:this.imgUrl+"/api/Upload/upload",//请求的地址
+//                         data:{//往后台传递的参数
+//                             type:'card'
+//                         },
+//                         uploadSuccess:function(results){//上传成功的回调
+//                         // console.log(results);
+//                             if(results.code==200){
+//                                 _this.fm_path = results.data.url[0];
+//                                 mui.hideLoading();//隐藏后的回调函数
+// 						        mui.toast('上传成功');
+//                             }else{
+//                                 mui.toast(results.msg)
+//                             }
+//                         },
+//                         uploadError:function(xhr,status){
+//                             // console.log(status)
+//                             //上传出错的回调
+//                         }
+//                     });
+//                 }
+//             },
         }
     }
 </script>

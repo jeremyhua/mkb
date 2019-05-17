@@ -69,16 +69,16 @@
 					</div>
 			</router-link>	
 
-			<!-- <router-link class="content3" to="/index/brush" tag='div'>	
+			<router-link class="content3" to="/index/brush" tag='div'>	
 						<img src="" v-lazy='brush.src' alt="">
 						<div class="con_r">
 								<div class="dkzx">手刷中心</div>
 								<div class="jssp">快速办理<img src=""  v-lazy="xykicon.src" alt=""></div>
 					</div>
-			</router-link>		 -->
+			</router-link>
 			</div>
 		
-		 	<!-- <div class="bbcard clearfix">
+		 	 <div class="bbcard clearfix">
 				<div class="bbleft">
 					<h3>新手办卡</h3>
 					<h5 class="cc-one">新户专属 易下卡</h5>
@@ -107,7 +107,7 @@
 					<h3>帮我选卡</h3>
 					<h5 class="cc-four">测基因 推荐卡</h5>
 							<img v-lazy="bbcard.five" alt="">
-				</div> -->
+				</div> 
 
 			</div>	 		
             <span class="iconfont icon-fanhuidingbu" @click="returnTop()" v-show="is_TopShow"></span>
