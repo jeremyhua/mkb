@@ -27,12 +27,12 @@ setTimeLanguages(moment);
 
 Vue.config.productionTip = false;
 
-// Vue.prototype.imgUrl = 'http://www.qyy2018.com/';//http://my.dkb.com/  http://jcc.tw186.com/
-// Vue.prototype.webUrl = 'http://www.qyy2018.com/';
-// Vue.prototype.$http = 'http://www.qyy2018.com/';
-Vue.prototype.imgUrl = 'http://39.98.244.78:82';//http://my.dkb.com/  http://jcc.tw186.com/
-Vue.prototype.webUrl = 'http://39.98.244.78:82';
-Vue.prototype.$http = 'http://39.98.244.78:82';
+Vue.prototype.imgUrl = 'http://www.qyy2018.com/';//http://my.dkb.com/  http://jcc.tw186.com/
+Vue.prototype.webUrl = 'http://www.qyy2018.com/';
+Vue.prototype.$http = 'http://www.qyy2018.com/';
+// Vue.prototype.imgUrl = 'http://39.98.244.78:82';//http://my.dkb.com/  http://jcc.tw186.com/
+// Vue.prototype.webUrl = 'http://39.98.244.78:82';
+// Vue.prototype.$http = 'http://39.98.244.78:82';
 
 Vue.prototype.$startMove = startMove;
 Vue.prototype.$upload =UploaderPost;

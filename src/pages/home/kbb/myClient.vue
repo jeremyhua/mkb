@@ -1,6 +1,6 @@
 <template>
     <div id="myClient">
-        <x-header :left-options="{backText: ''}"  title="我的体系"></x-header>
+        <x-header :left-options="{backText: ''}"  title="推广中心"></x-header>
         <div class="clientCont " :style="{background: '#469dc8',backgroundSize: '100% 100%'}">
             <div class="client">
                 <x-circle :percent="percent2" :stroke-width="4" :trail-width="4" :stroke-color="strokeColor2" trail-color="rgba(255,255,255,0.2)">

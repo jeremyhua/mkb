@@ -9,11 +9,11 @@
 					<span v-if="!$route.query.address">{{address||daddress}}</span> 
 					</router-link>
 				</a> -->
-				<!-- <a slot="right" >    
-					<router-link to="/index/scanning">
-          							<span class="iconfont icon-saomiao"></span>
+				 <a slot="right" >    
+					<router-link to="/my/my-post">
+          							<span class="iconfont icon-xiaoxi1"></span>
         			</router-link>
-				</a> -->
+				</a> 
 		</x-header>
 		<div class="index-main bg-f0">
 			<div class="main-top">
@@ -38,11 +38,11 @@
 			<div class="tt-list">
 				<div class="left"><img v-lazy="ggn.src" alt=""></div>
 				<ul id="noticepublic">
-								<li  v-for="(item,index) in tt" :key="index++">
-								<router-link  :to="{path:'/index/article-list/article-details',query:{id:item.id}}" style="color:#333;"> 
-										<div class="right"><span>活动</span>	{{item.title}}</div>
-									 </router-link> 
-								</li>
+					<li  v-for="(item,index) in tt" :key="index++">
+					<router-link  :to="{path:'/index/article-list/article-details',query:{id:item.id}}" style="color:#333;"> 
+							<div class="right"><span>活动</span>{{item.title}}</div>
+						 </router-link> 
+					</li>
 				</ul>
 			</div> 
 			<div class="index-content">
@@ -54,7 +54,7 @@
 					</router-link>
 				</mt-swipe-item>
 			</mt-swipe>
-			<router-link class="content2" to="/index/go-loan" tag='div'>
+			<!-- <router-link class="content2" to="/index/go-loan" tag='div'>
 						<img src="" v-lazy='dk.src' alt="">
 							<div class="con_r">
 								<div class="dkzx">贷款中心</div>
@@ -75,38 +75,50 @@
 								<div class="dkzx">手刷中心</div>
 								<div class="jssp">快速办理<img src=""  v-lazy="xykicon.src" alt=""></div>
 					</div>
-			</router-link>
+			</router-link> -->
 			</div>
 		
 		 	 <div class="bbcard clearfix">
-				<div class="bbleft">
-					<h3>新手办卡</h3>
-					<h5 class="cc-one">新户专属 易下卡</h5>
-					<img v-lazy="bbcard.one" alt="">
-				</div>	
+				<router-link to="/kbb/CreditCardReceipts">
+					<div class="bbleft">
+						<h3>我要省钱</h3>
+						<h5 class="cc-one">小美帮你 刷卡取款</h5>
+						<img v-lazy="bbcard.one" alt="">
+					</div>
+				</router-link>	
 				<div class="bbright">
 						<div class="righttop">
-							<h3>里程兑换</h3>
-							<h5 class="cc-two">畅销免费机票</h5>
+						<router-link to="/index/brush">	
+							<h3>小美手刷</h3>
+							<h5 class="cc-two">手刷帮助</h5>
 							<img v-lazy="bbcard.two" alt="">
+						</router-link>	
 						</div>
 						<div class="rightbottom">
-							<h3>我的卡资料</h3>
-							<h5 class='cc-three'>留资料 智能申卡</h5>
+							<router-link to="/my/aboutus">
+							<h3>公众号</h3>
+							<h5 class='cc-three'>美卡宝 官方公众号</h5>
 							<img v-lazy="bbcard.three" alt="">
+							</router-link>
 						</div>	
 				</div>	
 			</div>
 			<div class="bbcard-sec clearfix">
-				<div class="bbleft">
-					<h3>快速批卡</h3>
-					<h5 class="cc-four">急速办 快审批</h5>
-							<img v-lazy="bbcard.four" alt="">
-				</div>
+				
+					<div class="bbleft">
+					<router-link to="/index/credit-card">	
+						<h3>快速批卡</h3>
+						<h5 class="cc-four">急速办卡 审批快</h5>
+								<img v-lazy="bbcard.four" alt="">
+					</router-link>			
+					</div>
+				
 				<div class="bbright">
-					<h3>帮我选卡</h3>
-					<h5 class="cc-four">测基因 推荐卡</h5>
+					<router-link to="/my/complaint">
+					<h3>专属客服</h3>
+					<h5 class="cc-four">我的小美客服</h5>
 							<img v-lazy="bbcard.five" alt="">
+					</router-link>		
 				</div> 
 
 			</div>	 		
@@ -165,7 +177,7 @@
 					href:"/kbb/repayMent",
 					url:'',//this.webUrl+"/#/repayMent",
 				},{
-					name:"刷卡收款",
+					name:"刷卡取款",
 					src:require('@/assets/images/home2.png'),
 					href:"kbb/CreditCardReceipts",
 					url:'',//this.webUrl+"/#/collectMoney",
@@ -254,7 +266,7 @@
 		        	}
 				],
 				scroll:'',
-				title:'信用卡中心',
+				title:'首页',
 				lat:'',  //30.579556
 				lng:'',  //114.325854
 				address:this.$route.query.address || '',
@@ -326,7 +338,12 @@
 					// this.drgl = results.data.list.EASYARTICLE;
 					this.tt = results.data.list.NEWSTOP;
 					// this.$nextTick(()=>{
-						this.startNew()
+						console.log(this.tt.length);
+						if(this.tt.length==1){
+							
+						}else{
+							this.startNew()
+						}
 					// })
 					
                 }else{
@@ -513,6 +530,7 @@
 	.bbcard .bbright .righttop,.bbcard-sec>div{height: 80px;padding:19px  0 0 12px;}
 	.bbcard .bbright .rightbottom,.bbcard .bbleft{padding:19px 0 0 12px ;}
 	.bbcard-sec{height: 80px;width: 100%;background:#fff;}
+	.bbcard a,.bbcard-sec a{color: #000;}
 	.bbcard-sec>div{width: 50%;;float:left;}
 	.tt-list{width:100%;display:block;position:relative;overflow: hidden;font-size:13px;height: 46px;background: #fff;text-align: left;line-height: 46px;}
 	.tt-list .left{width:55px;height:100%;float:left;}
@@ -540,7 +558,7 @@
 
 <style>
  #index .icon-luxiandingwei{font-size: 25px;display: inline-block;vertical-align: middle;margin-top: -5px;}
-  #index .icon-saomiao{font-size: 26px;}
+  #index .icon-xiaoxi1{font-size: 26px;}
 	#index .mint-swipe-indicator.is-active{    background: #e3e3e3;;opacity:1;}
 	h3{font-size:24px;}
 	#noticepublic li a{overflow: hidden;text-overflow:ellipsis;white-space: nowrap;width:100%;display:block;}

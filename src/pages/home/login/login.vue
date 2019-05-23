@@ -16,8 +16,8 @@
 			<form id='login-form' class="mui-input-group">
 				<!-- <div class="mui-input-row"> -->
                  <group>
-                    <!-- <x-input  id='account' name="username" placeholder="请输入账号" v-model="tel" v-focus></x-input> -->
-                    <x-input placeholder="请输入账号"  id='account' type='number'  v-model="tel" :max="13" is-type="china-mobile"  v-focus ></x-input>
+                    <x-input  id='account' name="username" placeholder="请输入账号" v-model="tel" v-focus></x-input>
+                    <!-- <x-input placeholder="请输入账号"  id='account' type='number'  v-model="tel" :max="13" is-type="china-mobile"  v-focus ></x-input> -->
                     <x-input  id='password' name="username"   v-model="psw" type="password"  placeholder="请输入密码"  v-focus ></x-input>
                 </group>
 				<!-- <div class="mui-input-row">

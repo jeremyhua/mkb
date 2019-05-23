@@ -17,7 +17,9 @@
                     <img class="fl payIcon" :src="require('../../../assets/images/pay/kuaijie-active.png')" width="40">
                     <div class="fl default-c amount">{{item.money}}</div>
                     <div class="fr">
-                        <div class="gray-c">{{item.tips}}</div>
+                        <div class="gray-c" v-if="item.status=='12'">交易成功</div>
+						<div class="gray-c" v-if="item.status=='0'||item.status=='2'||item.status=='6'||item.status=='8'||item.status=='10'">交易进行中</div>
+						<div class="gray-c" v-if="item.status=='1'||item.status=='7'||item.status=='9'||item.status=='11'||item.status=='13'">交易失败</div>
                         <div class="default-c">交易详情</div>
                     </div>
                 </cell>
@@ -59,13 +61,17 @@ export default {
                 if(res.code==1){
                      this.getMoneyList = res.result.list;
                      this.moneySum = res.result.money_sum;
+					 
                 }else{
                     mui.toast(res.msg);
                 }
+				
             });
+			
     },
     methods: {
-    }
+		
+	}
 }
 </script>
 <style scoped>

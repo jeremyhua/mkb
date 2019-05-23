@@ -60,28 +60,28 @@
 						<router-link :to="{path:'/kbb/debitCard',query:{link:webUrl+'/#/my/debitCard',title: '我的银行卡'}}" >	
 							<i class="iconfont icon-yinhangqia"></i>
 							<div>我的银行卡</div>
-							<div class="num">{{users ? users.my_bank_num : 0}}</div>
+							<!-- <div class="num">{{users ? users.my_bank_num : 0}}</div> -->
 						</router-link>  
 					</div>
 					<div class="mui-col-xs-6 mui-table-view-cell mui-media sublist">
 						<router-link :to="{path: '/order',query:{type:'1'}}" >
 							<i class="iconfont icon-icon"></i>
 							<div>我的订单</div>
-							<div class="num">{{users ? users.loan_post_num : 0}}</div>
+							<!-- <div class="num">{{users ? users.loan_post_num : 0}}</div> -->
 						</router-link>  
 					</div>
 					<div class="mui-col-xs-6 mui-table-view-cell mui-media sublist">
-						<router-link to='/my/my-star' >	
+						<router-link :to="{path:'/kbb/myClient',query:{link:webUrl+'/#/collectMoney/bills',title:'刷卡记录'}}" >	
 							<i class="iconfont icon-shoucang"></i>
-							<div>我的收藏</div>
-							<div class="num">{{users? users.my_collect_num : 0}}</div>
+							<div>推广中心</div>
+							<!-- <div class="num">{{users? users.my_collect_num : 0}}</div> -->
 						</router-link>  
 					</div>
 					<div class="mui-col-xs-6 mui-table-view-cell mui-media sublist">
 						<router-link to='/my/my-need' >	
 							<i class="iconfont icon-fabutiezi"></i>
 							<div>我的需求</div>
-							<div class="num">{{users ? users.my_post_num : 0}}</div>
+							<!-- <div class="num">{{users ? users.my_post_num : 0}}</div> -->
 						</router-link>  
 					</div>
 				</li>
@@ -95,14 +95,14 @@
 						</div>
 					</router-link>	
 				</li>
-				<li class="mui-table-view-cell mui-media " >
+				<!-- <li class="mui-table-view-cell mui-media " >
 		            <router-link :to="{path:'/kbb/myClient',query:{link:webUrl+'/#/collectMoney/bills',title:'刷卡记录'}}" class="list-li">	
 						<i class="iconfont mui-pull-left img-li icon-manager"></i>
 						<div class="mui-media-body">
 							<p class="mui-ellipsis">代理中心<i class="iconfont icon-youjiantou mui-pull-right"></i></p>
 						</div>
 					</router-link>	
-				</li>
+				</li> -->
 				<li class="mui-table-view-cell mui-media "  v-if="users &&users.is_manager==1">
 		            <router-link to='/my/loan-center' class="list-li" >	
 						<i class="iconfont mui-pull-left img-li icon-daikuan"></i>

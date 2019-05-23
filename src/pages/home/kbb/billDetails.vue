@@ -6,7 +6,9 @@
                 <cell>
                     <div class="fix w100 lh50 bd-line mb10">
                         <span class="fl">交易金额：<b class="theme-c">{{getdetails.money}}</b></span>
-                        <span class="fr"><span class="success fl"></span> {{getdetails.tips}}</span>
+                        <span class="fr" v-if="getdetails.status=='12'"><span class="success fl"></span>交易成功</span>
+						<span class="fr" v-if="getdetails.status=='0'||getdetails.status=='2'||getdetails.status=='6'||getdetails.status=='8'||getdetails.status=='10'"><span class="success fl"></span>交易进行中</span>
+						<span class="fr" v-if="getdetails.status=='1'||getdetails.status=='7'||getdetails.status=='9'||getdetails.status=='11'||getdetails.status=='13'"><span class="success fl"></span>交易失败</span>
                     </div>
                     <div class="fix lh30">
                         <span class="fl">交易单号</span>
