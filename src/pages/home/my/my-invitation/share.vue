@@ -15,7 +15,7 @@
                 <div class="content-share">
                     <p>1.分享APP给好友。</p>
                     <p>2.好友进行注册时,填写您的邀请码。</p>
-                    <p>3.推荐好友注册后,自动升级为黄金会员。</p>
+                    <p>3.推荐好友注册后,自动升级为VIP会员。</p>
                 </div>
             </div>
             <ul class="footer">
@@ -111,10 +111,10 @@ export default {
                         this.shareAction({title:'QQ',s:this.shares['qq']});
                     break;
                 case 'tencentweibo':
-                        this.shareAction({title:'新浪微博',s:this.shares['tencentweibo']});
+                        this.shareAction({title:'腾讯微博',s:this.shares['tencentweibo']});
                     break;
                 default:
-                        this.shareAction({title:'腾讯微博',s:this.shares['sinaweibo']});
+                        this.shareAction({title:'新浪微博',s:this.shares['sinaweibo']});
                     break;
             } 
         },
@@ -260,7 +260,7 @@ export default {
 .footer{
     width: 100%;
     // position: fixed;
-//    height:56px;
+    // height:56px;
     // height: 50px;
     // padding:10px;
     // z-index: 100;

@@ -10,8 +10,7 @@
 					</div>
 				</form>
 				<div class="mui-content-padded">
-					<button id='login' class="mui-btn mui-btn-block mui-button" @click="code_pay()">下一步</button>
-					
+					<button id='login' class="mui-btn mui-btn-block mui-button" @click="code_pay"> {{content}}</button>
 				</div>
 			</div>
 		</div>
@@ -23,16 +22,30 @@ import { XHeader } from 'vux';
 		name:"yzmcode",
 		data(){
 			return {
+				content: '下一步',  // 按钮里显示的内容
+				totalTime: 30,
+				canClick: true,
 				money_order_no:this.$route.query.money_order_no,
-				yzm:"",
+				yzm:""
+				 
 			}
 		},
 		mounted(){
-			// let sms_code = this.yzm;
-			// console.log(sms_code)
 		},
         methods:{
 			code_pay(){
+				if (!this.canClick) return  //改动的是这两行代码
+					 this.canClick = false
+					 this.content = '等待数据传输'
+					 let clock = window.setInterval(() => {
+					  this.content = '等待数据传输'
+					  if (this.totalTime < 0) {
+					   // window.clearInterval(clock)
+					   this.content = '返回重新提交订单'
+					   this.totalTime = 10
+					   this.canClick = true  //这里重新开启
+					  }
+					 },1000)
 				const codedata = {money_order_no:this.money_order_no,sms_code:this.yzm};
 				console.log(codedata)
 				this.$axios.post('api/Cardpay/payConfirm',{data:JSON.stringify(codedata)})
@@ -46,8 +59,8 @@ import { XHeader } from 'vux';
 								order_no:order_no}
 							})
 					}else{
-					mui.toast(res.msg)
-					return false;
+						mui.toast(res.msg)
+						return false;
 					}
 				})
 			}
@@ -62,5 +75,5 @@ import { XHeader } from 'vux';
 
 .code-tips{padding: 20px 30px; font-size: 14px; color: #999999; text-align: center;}
 #code-form{height: 400px;}
-
+#login{background: #0062CC;color:#fff;}
 </style>
