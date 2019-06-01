@@ -1,6 +1,6 @@
 import axios from "axios"
-axios.defaults.baseURL = 'http://www.qyy2018.com/'; //http://my.dkb.com/ http://jcc.tw186.com/
-//axios.defaults.baseURL = 'http://39.98.244.78:82';
+//axios.defaults.baseURL = 'http://www.qyy2018.com/'; //http://my.dkb.com/ http://jcc.tw186.com/
+axios.defaults.baseURL = 'http://39.98.244.78:82';
 axios.defaults.timeout = 30000;
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 let cancel, promiseArr = {}
