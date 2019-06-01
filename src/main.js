@@ -27,12 +27,12 @@ setTimeLanguages(moment);
 
 Vue.config.productionTip = false;
 
-Vue.prototype.imgUrl = 'http://www.qyy2018.com/';//http://my.dkb.com/  http://jcc.tw186.com/
-Vue.prototype.webUrl = 'http://www.qyy2018.com/';
-Vue.prototype.$http = 'http://www.qyy2018.com/';
-// Vue.prototype.imgUrl = 'http://39.98.244.78:82';//http://my.dkb.com/  http://jcc.tw186.com/
-// Vue.prototype.webUrl = 'http://39.98.244.78:82';
-// Vue.prototype.$http = 'http://39.98.244.78:82';
+// Vue.prototype.imgUrl = 'http://www.qyy2018.com/';//http://my.dkb.com/  http://jcc.tw186.com/
+// Vue.prototype.webUrl = 'http://www.qyy2018.com/';
+// Vue.prototype.$http = 'http://www.qyy2018.com/';
+Vue.prototype.imgUrl = 'http://39.98.244.78:82';//http://my.dkb.com/  http://jcc.tw186.com/
+Vue.prototype.webUrl = 'http://39.98.244.78:82';
+Vue.prototype.$http = 'http://39.98.244.78:82';
 
 Vue.prototype.$startMove = startMove;
 Vue.prototype.$upload =UploaderPost;
@@ -64,20 +64,20 @@ function isEmptyObject(e) {
     return !0  
 }; 
 //滚动卡死解决方法
-/* jQuery.event.special.touchstart = {
-    setup: function( _, ns, handle ){
-        if ( ns.includes("noPreventDefault") ) {
-            this.addEventListener("touchstart", handle, { passive: false });
-        } else {
-            this.addEventListener("touchstart", handle, { passive: true });
-        }
-    }
-}; */
-/* window.addEventListener("touchend", function (event) {
-    event.preventDefault();
-    }, {
-     passive:false
- }); */
+//  jQuery.event.special.touchstart = {
+//     setup: function( _, ns, handle ){
+//         if ( ns.includes("noPreventDefault") ) {
+//             this.addEventListener("touchstart", handle, { passive: false });
+//         } else {
+//             this.addEventListener("touchstart", handle, { passive: true });
+//         }
+//     }
+// };
+//  window.addEventListener("touchend", function (event) {
+//     event.preventDefault();
+//     }, {
+//      passive:false
+//  });
 
  import { ToastPlugin, AlertPlugin, ConfirmPlugin, LoadingPlugin } from 'vux'
  /*import { Promise } from 'es6-promise';*/

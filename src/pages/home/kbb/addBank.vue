@@ -94,7 +94,8 @@ export default {
             const  bankName = this.choosedBank.bank_name;
             const  bankNo = this.choosedBank.acronym;
             const  bankId = this.choosedBank.lineno;
-            const payload = {phone,bankCard,bankChild,bankName,bankNo,bankId,provin,city};//,address
+			const  bankInfoId = this.choosedBank.id;
+            const payload = {phone,bankCard,bankChild,bankName,bankNo,bankId,provin,city,bankInfoId};//,address
             this.btnloading=true;
             this.btnWord='添加中...';
             this.$axios.post('/api/api/addBank','data='+JSON.stringify(payload))

@@ -159,11 +159,17 @@ export default {
 			.then(res=>{
 			 if(res.code==200){
 				 console.log(res.order_no)
-				 	this.$router.push({
+				 if(res.aisle_name==Kft){
+					this.$router.push({
 						path:'/kbb/code',
 						query:{
 							money_order_no:res.order_no}
-						})
+						}) 
+					}else if(res.aisle_name==Xjie){
+						this.$router.push({
+						path:res.confirm_url
+					})
+					}
 				}else{
 					mui.toast(res.msg)
 					return false;

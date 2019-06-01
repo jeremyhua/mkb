@@ -1,6 +1,6 @@
 <template>
     <div id="taskDate">
-        <x-header title="任务日期" :left-options="{backText:''}" >
+        <x-header title="选择还款日期" :left-options="{backText:''}" >
             <span slot="right" @click="chooseAll(dates)">{{chooseTxt}}</span>
         </x-header>
         <div class="fixed-content">

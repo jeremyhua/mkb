@@ -8,8 +8,8 @@
                     <span class="consume"  @click="type='consume'"  :class="{arrow_active:type==='consume'}">消费</span>
                 </cell> -->
                 <!-- <cell title="任务日期" :value="runDay" is-link @click.native="chooseDate" ></cell> -->
-                <x-textarea title="任务日期" :value="runDay" :readonly="true" class="mytextArea" :height='24' is-link @click.native="chooseDate" :show-counter="false" :rows="1" autosize></x-textarea>
-                <x-input v-model="totalMoney" text-align="right" placeholder-align="right" type='number' title="任务总额" placeholder="请输入任务总额" ></x-input>
+                <x-textarea title="选择还款日期" :value="runDay" :readonly="true" class="mytextArea" :height='24' is-link @click.native="chooseDate" :show-counter="false" :rows="1" autosize></x-textarea>
+                <x-input v-model="totalMoney" text-align="right" placeholder-align="right" type='number' title="还款金额" placeholder="请输入还款金额" ></x-input>
 
                 <!-- <cell title="预留方案" >                
                     <span class="repay_hk" @click="type='1'" :class="{arrow_active:type=='1'}">刷二还二</span>
@@ -117,7 +117,7 @@ export default {
        if(this.$route.query.value){
            this.runDay = JSON.parse(this.$route.query.value).map(v=>v.split('/')[2]).join(',')
        }else{
-           this.runDay = '点击选择任务日期'
+           this.runDay = '点击选择还款日期'
        }
 
        mui.plusReady(()=>{
